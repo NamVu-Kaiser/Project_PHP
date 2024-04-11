@@ -4,12 +4,6 @@ require_once('models/products.php');
 
 class ProductController
 {
-    // Phương thức lấy danh sách tất cả các sản phẩm
-    public static function getAllProductsController()
-    {
-        return Product::readAll();
-    }
-
     // Phương thức tạo mới sản phẩm
     public static function createController($name, $category_id, $quantity, $price, $description, $storage, $color, $image)
     {

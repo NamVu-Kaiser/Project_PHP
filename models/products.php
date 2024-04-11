@@ -82,6 +82,29 @@ class Product
         }
     }
 
+    // Phương thức đọc các sản phẩm thuộc một danh mục cụ thể
+    public static function readByCategory($id_category) {
+        $database = new Database();
+        $connection = $database->getConnection();
+
+        $query = "SELECT * FROM Product WHERE id_category = ?";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("i", $id_category);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $products = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
+            }
+        }
+
+        $connection->close();
+        return $products;
+    }
+
+
     // Phương thức cập nhật thông tin sản phẩm
     public function update($id)
     {
@@ -118,5 +141,4 @@ class Product
         }
     }
 }
-
 ?>

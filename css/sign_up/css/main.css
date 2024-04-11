@@ -200,6 +200,7 @@ fieldset, legend {
 li > ol,
 li > ul {
   margin-bottom: 0;
+  height: 62px;
 }
 
 /**

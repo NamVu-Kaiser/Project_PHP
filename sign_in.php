@@ -1,7 +1,5 @@
 <?php
-session_start();
 require_once('controllers/UserController.php');
-
 // Xử lý đăng nhập khi form được gửi đi
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['email']) && isset($_POST['password'])) {
@@ -19,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result) {
             // Đăng nhập thành công, lưu họ tên vào session
             $_SESSION['email'] = $email;
-            $_SESSION['user_fullname'] = $result;
+            $_SESSION['fullname'] = $result;
             // Chuyển hướng đến trang index.php
             header('Location: index.php');
             exit();
@@ -37,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V4</title>
+	<title>Đăng Nhập</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -71,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form" method="POST">
 					<span class="login100-form-title p-b-49">
-						Login
+						Đăng Nhập
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Email is reauired">
@@ -103,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<span>
-							Or Sign Up Using
+							Đăng nhập với
 						</span>
 					</div>
 
@@ -121,9 +119,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						</a>
 					</div>
 
-					<div class="flex-col-c p-t-155">
+					<div class="txt1 text-center p-t-54 p-b-20">
 						<span class="txt1 p-b-17">
-							Or Sign Up Using
+							Bạn chưa có tài khoản?
 						</span>
 
 						<a href="sign_up.php" class="txt2">

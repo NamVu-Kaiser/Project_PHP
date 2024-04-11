@@ -13,10 +13,12 @@ class UserController {
         // Kiểm tra kết quả đăng nhập
         if ($result) {
             // Đăng nhập thành công, lấy họ tên của người dùng
-            $userFullName = $user->getFullNameByEmail($email);
-            if ($userFullName) {
+            $fullname = $user->getFullNameByEmail($email);
+            if ($fullname) {
                 // Nếu có họ tên, trả về họ tên
-                return $userFullName;
+                $_SESSION['email'] = $email;
+                $_SESSION['fullname'] = $fullname; // Thay đổi ở đây
+                header('Location: index.php');
             } else {
                 // Nếu không có họ tên, trả về null hoặc một giá trị mặc định khác
                 return null;
@@ -48,6 +50,17 @@ class UserController {
             return false;
         }
     }
+    public function SignOutController() {
+        // Tạo một đối tượng User
+        $user = new User(null, null, null, null, null, null, null, null);
+        
+        // Gọi phương thức đăng xuất từ đối tượng User
+        $user->sign_out();
+
+        // Chuyển hướng người dùng đến trang chính sau khi đăng xuất
+        header('Location: index.php');
+    }
+
 }
 
 ?>

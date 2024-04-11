@@ -123,6 +123,7 @@ class User
         // Kiểm tra số hàng trả về từ truy vấn
         if ($result->num_rows == 1) {
             // Đăng nhập thành công
+            session_start();
             return true;
         } else {
             // Đăng nhập thất bại
@@ -200,5 +201,9 @@ class User
             return false;
         }
     }
+    public function sign_out(){
+        session_start();
+        session_unset();
+        session_destroy();
+    }
 }
-?>
